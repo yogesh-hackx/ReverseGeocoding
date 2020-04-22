@@ -6,7 +6,8 @@ class App extends React.Component {
         lat: null,
         long: null,
         state: null,
-        address: null
+        address: null,
+        error: null
     }
 
     success = (position) => {
@@ -20,6 +21,7 @@ class App extends React.Component {
 })
 .catch(err => {
         console.log(err);
+        this.setState({ error: err})
 });
     }
 
@@ -34,7 +36,7 @@ class App extends React.Component {
                 {
                     this.state.address ? (<div className="alert alert-success" role="alert"><p>Address: {this.state.address}</p><p>Coordinates: {`Lat: ${this.state.lat}, Long: ${this.state.long}`}</p></div>) : 
                     this.state.state ? <div className="alert alert-success" role="alert"><p>State: {this.state.state}</p><p>Coordinates: {`Lat: ${this.state.lat}, Long: ${this.state.long}`}</p></div>
-                    : null
+                    : this.state.error ? <div>{this.state.error}</div> : null
                 }
 
             </div>
