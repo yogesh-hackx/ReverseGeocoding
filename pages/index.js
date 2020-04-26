@@ -12,7 +12,7 @@ class App extends React.Component {
 
     success = (position) => {
         this.setState({ lat: position.coords.latitude, long: position.coords.longitude})
-        fetch(`http://www.geoplugin.net/extras/location.gp?lat=${this.state.lat}&lon=${this.state.long}&format=json`)
+        fetch(`https://api.covidfyi.in/v1/locate?lat=${this.state.lat}&lon=${this.state.long}`)
 .then(response => {
     console.log(response.json().then(resp => { 
         console.log(resp.geoplugin_region);
